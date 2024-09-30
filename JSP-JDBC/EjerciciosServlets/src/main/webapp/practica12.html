@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function baja_consulta(){
+	document.getElementById("nombre").disabled=true;
+	document.getElementById("apellidos").disabled=true;
+	document.getElementById("nif").disabled=false;
+	document.getElementById("email").disabled=true;
+}
+function altas(){
+	document.getElementById("nombre").disabled=false;
+	document.getElementById("apellidos").disabled=false;
+	document.getElementById("nif").disabled=false;
+	document.getElementById("email").disabled=false;
+}
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<form name="entrada" action="controller12" method="get" target="iframe">
+	<label for="nombre" id="lnombre">Nombre</label>
+	<input type="text" id="nombre" name="nombre"><br><br>
+	<label for="apellidos" id="lapellidos">Apellidos</label>
+	<input type="text" id="apellidos" name="apellidos" ><br><br>
+	<label for="nif" id="lnif">Nif</label>
+	<input type="text" id="nif" name="nif" required><br><br>
+	<label for="email" id="lemail">Email</label>
+	<input type="email" id="email" name="email"><br><br>
+	
+	<input type="radio" name="operacion" id="alta" value="alta" onclick="altas();" checked>
+	<label for="alta" id="lalta">Alta</label><br>
+	<input type="radio" name="operacion" id="baja" value="baja" onclick="baja_consulta()">
+	<label for="baja" id="lbaja">Baja</label><br>
+	<input type="radio" name="operacion" id="consulta" value="consulta" onclick="baja_consulta()">
+	<label for="consulta" id="lconsulta">Consulta</label><br><br>
+	<input type="submit" value="Submit">
+</form>
+<!--  
+< iframe name="iframe" src=""></iframe>
+-->
+</body>
+</html>

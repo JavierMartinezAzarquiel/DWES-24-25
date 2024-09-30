@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function cambiaMetodo(){
+	var metodo=document.querySelector("input[name=get-post]:checked").value;
+	alert("envio el formulario con "+metodo);
+	document.entrada.method=metodo;
+	document.entrada.submit();
+}
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+
+<form name="entrada" action="controller05" method="#">
+	<input type="radio" id="get" name="get-post" value="get" checked>
+	<label for="get">GET</label><br>
+	<input type="radio" id="post" name="get-post" value="post">
+	<label for="post">POST</label><br><br>
+  	<label for="filas">¿Cuántas filas?</label>
+  	<input type="text" id="filas" name="filas" ><br><br>
+  	<label for="columnas">¿Cuántas columnas?</label>
+  	<input type="text" id="columnas" name="columnas"><br><br>
+  	<input type="submit" value="Submit" onclick=cambiaMetodo();>
+</form>
+</body>
+</html>

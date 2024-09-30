@@ -1,0 +1,9 @@
+INDEX VERSION 1.134
+C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1770504680.index
+\TestJstl\src\main\java
+C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3151471933.index
+\Biblioteca_web\src\main\java
+C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3690074879.index
+\Biblioteca_web\src\main\java
+C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4127786752.index
+\Biblioteca_web\src\main\java

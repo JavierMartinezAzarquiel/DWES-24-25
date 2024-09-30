@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server auto-publish-setting="2" auto-publish-time="1" glassfish.adminserverportnumber="4848" glassfish.domainpath="C:\appDiurno\Payara\payara6\glassfish\domains\domain1" glassfish.serverportnumber="8080" hostname="localhost" id="GlassFish [domain1]" name="GlassFish [domain1]" previous-domain="C:\appDiurno\Payara\payara6\glassfish\domains\domain1" previous-name="GlassFish [domain1]" runtime-id="GlassFish" server-type="glassfish.server" server-type-id="glassfish.server" start-timeout="240" stop-timeout="240" timestamp="30">
+    <list key="modules" value0="Biblioteca_web::org.eclipse.jst.jee.server:Biblioteca_web::jst.web::5.0"/>
+  </server>
+</servers>

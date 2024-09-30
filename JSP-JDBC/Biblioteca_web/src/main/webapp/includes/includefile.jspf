@@ -1,0 +1,7 @@
+<link rel="icon" href="${pageContext.request.contextPath}/resources/img/azarquiel.ico" />
+<link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/estilo.css">
+<link rel="Stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/SpryMenuBarHorizontal.css" />
+<script src="${pageContext.request.contextPath}/resources/js/SpryMenuBar.js"
+	type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/check.js" type="text/javascript"></script>   

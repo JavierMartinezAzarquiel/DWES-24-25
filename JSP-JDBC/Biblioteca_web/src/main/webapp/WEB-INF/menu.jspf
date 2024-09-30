@@ -1,0 +1,75 @@
+<ul id="MenuBar1" class="MenuBarHorizontal">
+   <li><a class="MenuBarItemSubmenu" href="#">Socios</a>
+      <ul>
+		
+         <li><a
+            href="${pageContext.request.contextPath}/admin/altasocio.jsp">Nuevo
+               Socio</a></li>
+       
+         <li><a
+            href="${pageContext.request.contextPath}/controlleradmin?operacion=listadoSociosPaginado">Listado
+               Socios</a></li>     
+      
+            <li><a
+               href="${pageContext.request.contextPath}/admin/getsocio.jsp">Modificar
+                  Socio</a></li>
+        
+            <li><a href="#">Eliminar Socio</a></li>
+       
+            <li><a
+               href="${pageContext.request.contextPath}/controllersocio?operacion=editardatospersonales">Modificar
+                  Datos Personales</a></li>
+                
+            <li><a
+               href="${pageContext.request.contextPath}/controlleradmin?operacion=socioslibrosfueraplazo">Socios
+                  Morosos</a></li>
+      
+      </ul></li>
+   <li><a href="#" class="MenuBarItemSubmenu">Autores</a>
+      <ul>
+     
+         <li><a
+            href="${pageContext.request.contextPath}/admin/altaautor.jsp">Nuevo
+               Autor</a></li>
+                         
+         <li><a href="${pageContext.request.contextPath}/controllersocio?operacion=listarAutores">Listado de Autores</a></li>
+      </ul></li>
+   <li><a href="#" class="MenuBarItemSubmenu">Ejemplares</a>
+      <ul>
+      
+         <li><a
+            href="${pageContext.request.contextPath}/controlleradmin?operacion=iniciodelejemplar">Eliminar
+               Ejemplar</a></li>
+       
+      </ul></li>
+   <li><a href="#" class="MenuBarItemSubmenu">Libros</a>
+      <ul>
+         <li><a
+            href="${pageContext.request.contextPath}/socios/getlibros.jsp">Consulta</a></li>
+		           
+         <li><a
+            href="${pageContext.request.contextPath}/admin/altalibro.jsp">Nuevo
+               Libro</a></li>
+        
+      </ul></li>
+   <li><a class="MenuBarItemSubmenu" href="#">Prestamos</a>
+      <ul>
+      
+         <li><a
+            href="${pageContext.request.contextPath}/admin/prestamo.jsp">Nuevo
+               Prestamo</a></li>
+     
+         <li><a
+            href="${pageContext.request.contextPath}/admin/devolucion.jsp">Devolucion</a></li>
+      
+         <li><a
+            href="${pageContext.request.contextPath}/controllersocio?operacion=logout">Logout</a></li>
+         
+      </ul></li>
+</ul>
+<script type="text/javascript">
+	var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {
+		imgDown : "/Biblioteca/resources/img/SpryMenuBarDownHover.gif",
+		imgRight :"/Biblioteca/resources/img/SpryMenuBarRightHover.gif"
+	});
+</script>

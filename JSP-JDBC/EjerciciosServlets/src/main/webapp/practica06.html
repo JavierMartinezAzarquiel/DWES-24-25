@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function valida_envia(){
+	var filas = document.getElementById("filas");
+	var vfilas = parseInt(filas.value)
+	if (vfilas >10 || vfilas <1){
+		filas.focus();
+		alert("Filas es de 1 a 10");
+		return false;
+	}
+	var columnas = document.getElementById("columnas");
+	var vcolumnas = parseInt(columnas.value)
+	if (vcolumnas >10 || vcolumnas <1){
+		columnas.focus();
+		alert("columnas es de 1 a 10");
+		return false;
+	}
+   	alert("Muchas gracias por enviar el formulario");
+   	document.entrada.submit();
+}
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<form name="entrada" action="controller06" method="post">
+  <label for="filas">¿Cuántas filas?</label>
+  <input type="text" id="filas" name="filas" ><br><br>
+  <label for="columnas">¿Cuántas columnas?</label>
+  <input type="text" id="columnas" name="columnas"><br><br>
+  <input type="submit" value="Submit" onclick="javascript:return valida_envia()">
+</form>
+</body>
+</html>

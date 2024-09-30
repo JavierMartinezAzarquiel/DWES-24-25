@@ -1,0 +1,20 @@
+2024-09-13 09:41:56,498 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-09-13 09:42:51,854 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-09-13 09:46:01,837 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-09-16 08:58:59,485 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-09-17 12:41:45,797 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-09-18 10:14:39,807 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-09-18 11:12:35,760 [ModalContext] INFO  o.a.s.c.u.s.e.EdDSASecurityProviderRegistrar - getOrCreateProvider(EdDSA) created instance of net.i2p.crypto.eddsa.EdDSASecurityProvider
+2024-09-18 11:12:35,936 [ModalContext] INFO  o.a.s.c.i.DefaultIoServiceFactoryFactory - No detected/configured IoServiceFactoryFactory; using Nio2ServiceFactoryFactory
+2024-09-20 08:22:04,949 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-09-20 08:22:07,162 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Updating Gradle version information cache failed. Using outdated cache.
+2024-09-23 08:21:42,020 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-09-24 12:33:52,513 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-09-25 10:46:54,960 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-09-27 09:48:39,675 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-09-27 09:56:15,215 [Worker-8: Fetching remote refs from JavierMartinezAzarquiel@github.com:JavierMartinezAzarquiel/DWES-24-25.git] INFO  o.a.s.c.u.s.e.EdDSASecurityProviderRegistrar - getOrCreateProvider(EdDSA) created instance of net.i2p.crypto.eddsa.EdDSASecurityProvider
+2024-09-27 09:56:15,352 [Worker-8: Fetching remote refs from JavierMartinezAzarquiel@github.com:JavierMartinezAzarquiel/DWES-24-25.git] INFO  o.a.s.c.i.DefaultIoServiceFactoryFactory - No detected/configured IoServiceFactoryFactory; using Nio2ServiceFactoryFactory
+2024-09-27 09:58:10,598 [Worker-13: Remove Repositories] WARN  org.eclipse.jgit.lib.Repository - close() called when useCnt is already zero for Repository[C:\appDiurno\git\repository\.git]
+2024-09-27 10:43:47,115 [Worker-42: Git Repository Change Scanner] WARN  org.eclipse.jgit.lib.Repository - close() called when useCnt is already zero for Repository[C:\Users\diurno\git\repository\.git]
+2024-09-30 08:23:50,917 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-09-30 08:24:28,241 [Git Repository Closer] WARN  org.eclipse.jgit.lib.Repository - close() called when useCnt is already zero for Repository[C:\appDiurno\git\.git]

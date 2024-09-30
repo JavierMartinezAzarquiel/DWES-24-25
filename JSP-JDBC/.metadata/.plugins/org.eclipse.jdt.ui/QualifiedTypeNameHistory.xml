@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="pool.PoolSocio"/>
+    <fullyQualifiedTypeName name="pool.Secuencia"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="daos.DaoAutor"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="java.beans.Statement"/>
+    <fullyQualifiedTypeName name="conexiones.Conexion"/>
+    <fullyQualifiedTypeName name="entidades.Autor"/>
+    <fullyQualifiedTypeName name="dao.DaoAutor"/>
+    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.time.format.TextStyle"/>
+    <fullyQualifiedTypeName name="java.util.Locale"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+</qualifiedTypeNameHistroy>
