@@ -5,6 +5,7 @@ public class Socio {
     private String email;
     private String nombre;
     private String direccion;
+    private int version;
     private String clave;
 
 	public Socio() {
@@ -47,6 +48,14 @@ public class Socio {
 
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

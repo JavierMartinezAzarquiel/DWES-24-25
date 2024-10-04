@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import conexiones.Conexion;
 import entidades.Socio;
+import util.Hash;
 
 public class DaoSocio {
 
@@ -210,10 +212,10 @@ public class DaoSocio {
 	}
 
 	/****************************************************************************************************/
-	public ArrayList<Socio> listadoSocios(int pagina, int numregpag)
+	public List<Socio> listadoSocios(int pagina, int numregpag)
 			throws SQLException, Exception {
 
-		ArrayList<Socio> listasocios;
+		List<Socio> listasocios;
 		listasocios = new ArrayList<Socio>();
 		Connection con = null;
 		ResultSet rs = null;
@@ -221,17 +223,19 @@ public class DaoSocio {
 		try {
 			Conexion miconex = new Conexion();
 			con = miconex.getConexion();
-			String ordenSql = "SELECT IDSOCIO,EMAIL,NOMBRE,DIRECCION "
-					+ "FROM( SELECT ROWNUM FILA ,IDSOCIO,EMAIL,NOMBRE,DIRECCION "
-					+ "FROM( SELECT IDSOCIO,EMAIL,NOMBRE,DIRECCION "
-					+ "FROM SOCIO "
-					+ "ORDER BY NOMBRE))"
-					+ "WHERE FILA >=? AND FILA<=?";
+//			String ordenSql = "SELECT IDSOCIO,EMAIL,NOMBRE,DIRECCION "
+//					+ "FROM( SELECT ROWNUM FILA ,IDSOCIO,EMAIL,NOMBRE,DIRECCION "
+//					+ "FROM( SELECT IDSOCIO,EMAIL,NOMBRE,DIRECCION "
+//					+ "FROM SOCIO "
+//					+ "ORDER BY NOMBRE))"
+//					+ "WHERE FILA >=? AND FILA<=?";
+			String ordenSql = "SELECT IDSOCIO,EMAIL,NOMBRE,DIRECCION FROM SOCIO";
 			System.out.println("La orden lanzada es: " + ordenSql);
 			st = con.prepareStatement(ordenSql);
-			st.setInt(1, (pagina * numregpag) + 1);
-			st.setInt(2, (pagina * numregpag) + numregpag);
+//			st.setInt(1, (pagina * numregpag) + 1);
+//			st.setInt(2, (pagina * numregpag) + numregpag);
 			rs = st.executeQuery();
+			//Ahora tengo todas las tuplas de socio
 			while (rs.next()) {
 				Socio miSocio = new Socio();
 				miSocio.setIdsocio(rs.getLong("IDSOCIO"));
@@ -240,6 +244,15 @@ public class DaoSocio {
 				miSocio.setDireccion(rs.getString("DIRECCION"));
 				listasocios.add(miSocio);
 			}
+			//ya tengo la lista con todos los socio.
+			//tengo que seleccionar solo los que incluyen en la página pedida
+			List<Socio> listaParcial = new ArrayList<Socio>();
+			listaParcial = listasocios.subList((pagina * numregpag), (((pagina * numregpag)+ numregpag <listasocios.size()) ? (pagina * numregpag) + numregpag : listasocios.size() ));
+			
+//			for (int i = (pagina * numregpag); i < (((pagina * numregpag)+ numregpag <listasocios.size()) ? (pagina * numregpag) + numregpag : listasocios.size() ) ; i++) {
+//				listaParcial.add(listasocios.get(i));
+//			}
+			listasocios = listaParcial;
 		} catch (SQLException se) {
 			throw se;
 		} catch (Exception e) {
@@ -335,11 +348,11 @@ public class DaoSocio {
 		try {
 			Conexion miconex = new Conexion();
 			con = miconex.getConexion();
-			con.setAutoCommit(false);
-			ordenSQL = "INSERT INTO USUARIOS VALUES(?,MD5HASH(?))";
+			con.setAutoCommit(false); //Para poder posponer el commit de los cambios
+			ordenSQL = "INSERT INTO USUARIOS VALUES(?,?)";
 			st = con.prepareStatement(ordenSQL);
 			st.setString(1, s.getEmail());
-			st.setString(2, s.getClave());
+			st.setString(2, Hash.getHash(s.getClave(), "MD5") );
 			st.executeUpdate();
 			st.close();
 			ordenSQL = "INSERT INTO GRUPOS VALUES(?,?)";
