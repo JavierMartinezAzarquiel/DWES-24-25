@@ -12,9 +12,12 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
 import dao.DaoAutor;
+import dao.DaoSocio;
 import entidades.Autor;
+import entidades.Socio;
 
 /**
  * Servlet implementation class ControllerAdmin
@@ -74,7 +77,75 @@ public class ControllerAdmin extends HttpServlet {
 			}
 			
 			break;
+			
+		case "registrarse":
+			System.out.println("Entrando en registrarse....");
+			nombre = request.getParameter("nombre");
+			String email = request.getParameter("email");
+			String clave = request.getParameter("password");
+			String direccion = request.getParameter("direccion");
 
+			DaoSocio daosocio = new DaoSocio();
+			Socio socio = new Socio();
+			socio.setNombre(nombre);
+			socio.setEmail(email);
+			socio.setClave(clave);
+			socio.setDireccion(direccion);
+			try {
+				daosocio.insertarSocio(socio);
+				//recuperamos el socio que ya vendrá con el ID completo
+				socio = daosocio.findSocioByEmail(socio.getEmail());
+				request.setAttribute("socio", socio);
+				request.setAttribute("confirmaroperacion", "Socio "+socio.getIdsocio()+" creado satisfactoriamente");
+				request.getRequestDispatcher("admin/altasocio.jsp").forward(request, response);
+			} catch (SQLException e) {
+				System.out.println(e.toString());
+				procesarError(request, response, e,"admin/altasocio.jsp");
+			} catch (Exception e) {
+				procesarError(request, response, e,"admin/altasocio.jsp");
+			}
+			break;
+			
+		case "listadoSociosPaginado":
+			DaoSocio daoSocio = new DaoSocio();
+			int totalRegistros = 0;
+			int pagina = 0; //Por defecto muestro la página 0
+			int numregpag = 5; //Por defecto le pongo 5
+			int paginamasalta = 0;
+			List<Socio> listadoSocios = null;
+			//Preguntar si tengo parámetros en la request
+			if (request.getParameter("pag") != null) { //si nos han pedido una página concreta
+				pagina =Integer.parseInt(request.getParameter("pag"));
+			}
+			if (request.getParameter("nrp") != null) { 
+				numregpag =Integer.parseInt(request.getParameter("nrp"));
+			}
+			
+			try {
+				//Averiguar cuantos registros hay
+				totalRegistros = daoSocio.getTotalRegistros();
+				//Calcular cual es la última pagina(pagina mas alta)
+				paginamasalta = totalRegistros / numregpag;
+				//Obtener el listado de socios
+				listadoSocios = daoSocio.listadoSocios(pagina, numregpag);
+				
+				//añadir todos los datos a la request para mandarselos a la vista
+				request.setAttribute("pagina", pagina);
+				request.setAttribute("numregpag", numregpag);
+				request.setAttribute("paginamasalta", paginamasalta);
+				request.setAttribute("totalregistros", totalRegistros);
+				request.setAttribute("listadoSocios", listadoSocios);
+				request.getRequestDispatcher("admin/listadosociospaginado.jsp").forward(request, response);
+			} catch (SQLException e) {
+				procesarError(request, response, e,"admin/listadosociospaginado.jsp");
+			} catch (Exception e) {
+				procesarError(request, response, e,"admin/listadosociospaginado.jsp");
+			}
+			
+			
+			
+			break;	
+		
 		default:
 			break;
 		}

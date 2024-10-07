@@ -7,7 +7,7 @@
                Socio</a></li>
        
          <li><a
-            href="${pageContext.request.contextPath}/controlleradmin?operacion=listadoSociosPaginado">Listado
+            href="${pageContext.request.contextPath}/controllerAdmin?operacion=listadoSociosPaginado">Listado
                Socios</a></li>     
       
             <li><a

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+  <display-name>biblioteca</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ControllerAdmin</display-name>
+    <servlet-name>ControllerAdmin</servlet-name>
+    <servlet-class>servlets.ControllerAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerAdmin</servlet-name>
+    <url-pattern>/ControllerAdmin</url-pattern>
+    <url-pattern>/controllerAdmin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controllersocio</display-name>
+    <servlet-name>Controllersocio</servlet-name>
+    <servlet-class>servlets.Controllersocio</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controllersocio</servlet-name>
+    <url-pattern>/Controllersocio</url-pattern>
+    <url-pattern>/controllersocio</url-pattern>
+  </servlet-mapping>
+</web-app>
