@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import dao.DaoAutor;
+import dao.DaoSocio;
 import entidades.Autor;
+import entidades.Socio;
 
 /**
  * Servlet implementation class ControllerSocio
@@ -49,7 +51,46 @@ public class Controllersocio extends HttpServlet {
 			  catch (Exception e) {
 				procesarError(request, response, e,"socios/listadoautores.jsp");}
 			break;
-		
+		case "listarAutoresPaginado":
+			daoAutor = new DaoAutor();
+			int totalRegistros = 0;
+			int pagina = 0; //Por defecto muestro la página 0
+			int numregpag = 4; //Por defecto le pongo 4
+			int paginamasalta = 0;
+			List<Autor> listadoAutores = null;
+			//Preguntar si tengo parámetros en la request
+			if (request.getParameter("pag") != null) { //si nos han pedido una página concreta
+				pagina =Integer.parseInt(request.getParameter("pag"));
+			}
+			if (request.getParameter("nrp") != null) { 
+				numregpag =Integer.parseInt(request.getParameter("nrp"));
+			}
+			
+			try {
+				//Averiguar cuantos registros hay
+				totalRegistros = daoAutor.getTotalRegistros();
+				//Calcular cual es la última pagina(pagina mas alta)
+				paginamasalta = totalRegistros / numregpag;
+				if(totalRegistros % numregpag == 0) paginamasalta--;
+				//Obtener el listado de socios
+				listadoAutores = daoAutor.listadoAutores(pagina, numregpag);
+				
+				//añadir todos los datos a la request para mandarselos a la vista
+				request.setAttribute("pagina", pagina);
+				request.setAttribute("numregpag", numregpag);
+				request.setAttribute("paginamasalta", paginamasalta);
+				request.setAttribute("totalregistros", totalRegistros);
+				request.setAttribute("listadoautores", listadoAutores);
+				request.getRequestDispatcher("socios/listadoautoresPaginado.jsp").forward(request, response);
+			} catch (SQLException e) {
+				procesarError(request, response, e,"socios/listadoautoresPaginado.jsp");
+			} catch (Exception e) {
+				procesarError(request, response, e,"socios/listadoautoresPaginado.jsp");
+			}
+			
+			
+			
+			break;	
 		default:
 			break;
 		}
