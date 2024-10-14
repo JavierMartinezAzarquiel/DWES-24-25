@@ -23,17 +23,9 @@
 				</p>
 			</div>
 		</c:if>
-		<c:if test="${confirmaroperacion != null}">
-			<div class="divconfirmacion">
-				<p>
-					<strong><c:out value="Mensaje" /></strong> <br>
-					<c:out value="${confirmaroperacion}" />
-				</p>
-			</div>
-		</c:if>
 		<div id="divAltaSocio" class="formulariogeneral">
 			<form name="frmSocio" method="post"
-				action="${pageContext.request.contextPath}/controllerAdmin">
+				action="${pageContext.request.contextPath}/controlleradmin">
 				<fieldset id="datosSocio">
 					<legend>
 						<img src="../resources/img/azarquiel.gif">&nbsp;Nuevo Socio
@@ -63,6 +55,7 @@
 						<input type="text" id="direccion" name="direccion" /> 
 						<input name="operacion" type="hidden" id="operacion" value="registrarse">
 					</div>
+
 					<div class="cb"></div>
 					<div class="botones">
 						<input type="submit" name="Submit" value="Alta">

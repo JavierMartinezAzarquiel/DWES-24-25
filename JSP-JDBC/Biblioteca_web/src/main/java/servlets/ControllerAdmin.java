@@ -126,6 +126,7 @@ public class ControllerAdmin extends HttpServlet {
 				totalRegistros = daoSocio.getTotalRegistros();
 				//Calcular cual es la última pagina(pagina mas alta)
 				paginamasalta = totalRegistros / numregpag;
+				if(totalRegistros % numregpag == 0) paginamasalta--;
 				//Obtener el listado de socios
 				listadoSocios = daoSocio.listadoSocios(pagina, numregpag);
 				
@@ -145,7 +146,59 @@ public class ControllerAdmin extends HttpServlet {
 			
 			
 			break;	
-		
+		case "busquedasocio":
+			String iniciales = request.getParameter("frmbusquedanombre");
+			System.out.println(iniciales);
+			daoSocio = new DaoSocio();
+			try {
+				listadoSocios = daoSocio.listadoSociosByNombre(iniciales);
+				System.out.println(listadoSocios);
+				request.setAttribute("iniciales", iniciales);
+				request.setAttribute("listadoSociosBusqueda", listadoSocios);
+				request.getRequestDispatcher("admin/getsocio.jsp").forward(request, response);
+			} catch (SQLException e) {		
+				procesarError(request, response, e, "admin/getsocio.jsp");
+				//e.printStackTrace();
+			} catch (Exception e) {
+				procesarError(request, response, e, "admin/getsocio.jsp");
+			}
+			break;	
+		case "editarsocio":
+			long idsocio = Long.parseLong(request.getParameter("socio"));
+			daoSocio = new DaoSocio();
+			try {
+				socio = daoSocio.findSocioById(idsocio);
+				request.setAttribute("socioenproceso", socio);
+				request.getRequestDispatcher("admin/editsocio.jsp").forward(request, response);
+			} catch (SQLException e) {
+				procesarError(request, response, e, null);
+			} catch (Exception e) {
+				procesarError(request, response, e, null);
+			}
+			break;
+		case "updatesocio":
+			socio = new Socio();
+			Long codigoSocio = Long.decode(request.getParameter("frmeditSocioIdSocio"));
+			socio.setIdsocio(codigoSocio);
+			socio.setNombre(request.getParameter("frmeditSocioNombre"));
+			socio.setDireccion(request.getParameter("frmeditSocioDireccion"));
+			daoSocio = new DaoSocio();
+			try {
+				request.setAttribute("socioenproceso", socio);
+				daoSocio.updateSocio(socio);
+				Socio sociomodificado=daoSocio.findSocioById(socio.getIdsocio());
+				request.setAttribute("socioenproceso", sociomodificado);
+				request.setAttribute("confirmaroperacion", "Socio modificado");
+				request.getRequestDispatcher("admin/editsocio.jsp").forward(request, response);
+			} catch (SQLException sqlexc) {
+				System.out.println("que pasa en sqlexception....");
+				procesarError(request, response, sqlexc, "admin/editsocio.jsp");
+			} catch (Exception e) {
+				procesarError(request,response,e,"admin/editsocio.jsp");
+				// procesarError(request,response,e);
+			}
+			break;	
+			
 		default:
 			break;
 		}
