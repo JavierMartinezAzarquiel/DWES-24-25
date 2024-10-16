@@ -12,11 +12,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.DaoAutor;
+import dao.DaoPrestamo;
 import dao.DaoSocio;
 import entidades.Autor;
+import entidades.Prestamo;
 import entidades.Socio;
 
 /**
@@ -37,6 +40,8 @@ public class ControllerAdmin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//OBTENGO EL OBJETO SESSION
+		HttpSession session = request.getSession();
 		
 		//obtenemos la operación que han seleccionado en el menu
 		String operacion = request.getParameter("operacion");	
@@ -199,6 +204,45 @@ public class ControllerAdmin extends HttpServlet {
 			}
 			break;	
 			
+		case "socioslibrosfueraplazo":
+			daosocio = new DaoSocio();
+			try {
+				listadoSocios = daosocio.listadoSociosMorosos();
+				session.setAttribute("listadoSociosMorosos", listadoSocios);
+				request.getRequestDispatcher("admin/listadosociosmorosos.jsp").forward(request, response);
+			} catch (SQLException e) {
+				procesarError(request, response, e, null);
+			} catch (Exception e) {
+				procesarError(request, response, e, null);
+			}
+			break;
+		case "verlibrosfueraplazo":
+			//vuelvo a cargar el listado de sociosMorosos
+			daosocio = new DaoSocio();
+//			try {
+//				listadoSocios = daosocio.listadoSociosMorosos();
+//				request.setAttribute("listadoSociosMorosos", listadoSocios);
+//			} catch (SQLException e) {
+//				procesarError(request, response, e, null);
+//
+//			} catch (Exception e) {
+//				procesarError(request, response, e, null);
+//			}
+			codigoSocio = Long.parseLong(request.getParameter("socio"));
+			ArrayList<Prestamo>listadoPrestamos;
+			DaoPrestamo daoprestamo = new DaoPrestamo();
+			try {
+				
+				listadoPrestamos = daoprestamo.listadoPrestamosFueraPlazo(codigoSocio);
+				request.setAttribute("nombreSocio", daosocio.findSocioById(codigoSocio).getNombre());
+				request.setAttribute("listadoLibrosFueraPlazo", listadoPrestamos);
+				request.getRequestDispatcher("admin/listadosociosmorosos.jsp").forward(request, response);
+			} catch (SQLException e) {
+				procesarError(request, response, e, null);
+			} catch (Exception e) {
+				procesarError(request, response, e, null);
+			}
+			break;			
 		default:
 			break;
 		}

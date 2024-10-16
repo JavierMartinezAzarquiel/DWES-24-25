@@ -21,7 +21,7 @@
                   Datos Personales</a></li>
                 
             <li><a
-               href="${pageContext.request.contextPath}/controlleradmin?operacion=socioslibrosfueraplazo">Socios
+               href="${pageContext.request.contextPath}/controllerAdmin?operacion=socioslibrosfueraplazo">Socios
                   Morosos</a></li>
       
       </ul></li>

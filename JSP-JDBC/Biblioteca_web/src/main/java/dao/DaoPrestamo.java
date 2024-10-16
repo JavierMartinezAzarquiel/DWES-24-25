@@ -83,8 +83,8 @@ public class DaoPrestamo {
        try{
              Conexion miconex=new Conexion();
              Connection con=miconex.getConexion();
-             ordenSQL="SELECT IDEJEMPLAR,IDSOCIO,NOMBRE,TITULO,DIAS_DEMORA "+
-                      "FROM(SELECT P.IDEJEMPLAR,P.IDSOCIO,S.NOMBRE,L.TITULO,(TRUNC(SYSDATE)-TRUNC(FECHALIMITEDEVOLUCION))DIAS_DEMORA "+
+             ordenSQL="SELECT IDEJEMPLAR,IDSOCIO,NOMBRE,TITULO,DIAS_DEMORA,FECHAPRESTAMO "+
+                      "FROM(SELECT P.IDEJEMPLAR,P.IDSOCIO,S.NOMBRE,L.TITULO,(TRUNC(SYSDATE)-TRUNC(FECHALIMITEDEVOLUCION))DIAS_DEMORA,P.FECHAPRESTAMO "+
                       "FROM SOCIO S,PRESTAMO P,EJEMPLAR E,LIBRO L "+
                       "WHERE S.IDSOCIO=P.IDSOCIO "+
                       "AND P.IDEJEMPLAR=E.IDEJEMPLAR "+
@@ -100,6 +100,7 @@ public class DaoPrestamo {
                 miPrestamo.setIdsocio(rs.getLong("IDSOCIO"));
                 miPrestamo.setNombreSocio(rs.getString("NOMBRE"));
                 miPrestamo.setTitulo(rs.getString("TITULO"));
+                miPrestamo.setFechaprestamo(rs.getDate("FECHAPRESTAMO"));
                 miPrestamo.setDiasDemora(rs.getInt("DIAS_DEMORA"));
                 prestamosfueraplazo.add(miPrestamo);
              }
