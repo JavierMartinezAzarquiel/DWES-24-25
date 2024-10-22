@@ -2,4 +2,5 @@
 <modules>
   <module moduleId="org.eclipse.jst.jee.server:ConversorMillasKM" serverId="GlassFish [domain1]"/>
   <module moduleId="org.eclipse.jst.jee.server:Biblioteca_web" serverId="GlassFish [domain1]"/>
+  <module moduleId="org.eclipse.jst.jee.server:Foster" serverId="GlassFish [domain1]"/>
 </modules>
