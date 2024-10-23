@@ -7,11 +7,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.DaoAutor;
+import dao.DaoLibro;
 import dao.DaoSocio;
 import entidades.Autor;
+import entidades.Libro;
 import entidades.Socio;
 
 /**
@@ -87,10 +90,26 @@ public class Controllersocio extends HttpServlet {
 			} catch (Exception e) {
 				procesarError(request, response, e,"socios/listadoautoresPaginado.jsp");
 			}
+			break;
 			
+		case "busquedalibros":
+			String criteriobusqueda = request.getParameter("criteriobusqueda");
+			String valorbusqueda = request.getParameter("valorbusqueda");
+			request.setAttribute("valorbusqueda", valorbusqueda);
+			request.setAttribute("criteriobusqueda", criteriobusqueda);
 			
-			
-			break;	
+			DaoLibro dao = new DaoLibro();
+			try {
+				ArrayList<Libro> listadoLibros = dao.listadoLibros(criteriobusqueda, valorbusqueda);
+				
+				request.setAttribute("listadoLibrosBusqueda", listadoLibros);
+				request.getRequestDispatcher("socios/getlibros.jsp").forward(request, response);
+			} catch (SQLException e) {
+				procesarError(request, response, e, null);
+			} catch (Exception e) {
+				procesarError(request, response, e, null);
+			}
+			break;
 		default:
 			break;
 		}
