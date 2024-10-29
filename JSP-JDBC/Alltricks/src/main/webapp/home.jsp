@@ -30,7 +30,9 @@
                         <select class="form-select form-select-lg" name="idmarca" id="" onchange="this.form.submit()">
                             <option value="0" disabled selected>Elija Marca</option>
                             <option value="0">Todas</option>
-                            <!--  forEach  -->
+                            <c:forEach items="${marcas}" var="marca">
+                            	<option value="${marca.id}" ${marca.id==idmarca?'selected':''} >${marca.nombre}</option>
+                            </c:forEach>
                         </select>
                     </form>
                 </div>
@@ -38,14 +40,23 @@
                     <form action="Controller?operacion=cambioorden" method="post">
                         <select class="form-select form-select-lg" name="orden" id="" onchange="this.form.submit()">
                             <option value="null" disabled selected>Elija Orden</option>
-                            <option value="marca">Marca</option>
-                            <option value="precio asc">Precio Ascendente</option>
-                            <option value="precio desc">Precio Descendente</option>
+                            <option value="marca" ${orden=='marca'?'selected':''}>Marca</option>
+                            <option value="precio asc" ${orden=='precio asc'?'selected':''} >Precio Ascendente</option>
+                            <option value="precio desc" ${orden=='precio desc'?'selected':''}>Precio Descendente</option>
                         </select>
                     </form>
                 </div>
                 <div class="col-md-3 text-end">
-                       <span class="text-secondary display-4">&#9733;</span>
+                	<a href="Controller?operacion=favoritas" class="text-decoration-none">
+                		<c:choose>
+                			<c:when test="${favoritas==0}">
+                				<span class="text-secondary display-4">&#9733;</span>
+                			</c:when>
+                			<c:otherwise>
+                				<span class="text-warning display-4">&#9733;</span>
+                			</c:otherwise>
+                		</c:choose>	
+                	</a>
                 </div>
             </div>
 			<div class="row justify-content-center mt-3">

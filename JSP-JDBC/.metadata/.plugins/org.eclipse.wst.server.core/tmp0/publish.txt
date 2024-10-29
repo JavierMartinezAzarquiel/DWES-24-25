@@ -1,5 +1,6 @@
 #GlassFish 3
-#Fri Oct 25 09:43:33 CEST 2024
+#Tue Oct 29 13:28:48 CET 2024
+org.eclipse.jst.jee.server\:Alltricks=C\:\\appDiurno\\Payara\\payara6\\glassfish\\domains\\domain1\\eclipseApps\\Alltricks
 org.eclipse.jst.jee.server\:Biblioteca_web=C\:\\appDiurno\\Payara\\payara6\\glassfish\\domains\\domain1\\eclipseApps\\Biblioteca_web
 org.eclipse.jst.jee.server\:ConversorMillasKM=C\:\\appDiurno\\Payara\\payara6\\glassfish\\domains\\domain1\\eclipseApps\\ConversorMillasKM
 org.eclipse.jst.jee.server\:Foster=C\:\\appDiurno\\Payara\\payara6\\glassfish\\domains\\domain1\\eclipseApps\\Foster

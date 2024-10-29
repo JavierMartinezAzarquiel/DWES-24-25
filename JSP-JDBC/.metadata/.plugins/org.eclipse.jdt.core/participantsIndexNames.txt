@@ -1,12 +1,14 @@
 INDEX VERSION 1.134
+C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3762144222.index
+\Alltricks\src\main\java
 C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1950256779.index
 \Juego\src\main\java
 C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1770504680.index
 \TestJstl\src\main\java
-C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4266651294.index
-\ConversorMillasKM\src\main\java
 C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3151471933.index
 \Biblioteca_web\src\main\java
+C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4266651294.index
+\ConversorMillasKM\src\main\java
 C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3690074879.index
 \Biblioteca_web\src\main\java
 C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3462207153.index
