@@ -68,16 +68,18 @@
 								<h4 class="card-title">${bici.nombremarca}</h4>
 	                            <p class="card-text">${bici.descripcion}
 								<p> ${bici.precio}</p>
-								<c:choose>
-									<c:when test="${bici.fav==0}">
-										<span
+								<a href="Controller?operacion=bicifavorita&idbici=${bici.id}&bicifav=${bici.fav}">
+									<c:choose>
+										<c:when test="${bici.fav==0}">
+											<span
 											class="text-secondary display-6 position-absolute bottom-0 start-0 ms-2 mb-2">&#9733;</span>
-									</c:when>
-									<c:otherwise>
-										<span
+										</c:when>
+										<c:otherwise>
+											<span
 											class="text-warning display-6 position-absolute bottom-0 start-0 ms-2 mb-2">&#9733;</span>
-									</c:otherwise>
-								</c:choose>
+										</c:otherwise>
+									</c:choose>
+								</a>
 							</div>
 						</div>
 					</div>
