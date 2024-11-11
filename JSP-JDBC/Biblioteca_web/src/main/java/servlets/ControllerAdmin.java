@@ -21,6 +21,7 @@ import dao.DaoSocio;
 import entidades.Autor;
 import entidades.Prestamo;
 import entidades.Socio;
+import excepciones.PrestamoException;
 
 /**
  * Servlet implementation class ControllerAdmin
@@ -242,7 +243,53 @@ public class ControllerAdmin extends HttpServlet {
 			} catch (Exception e) {
 				procesarError(request, response, e, null);
 			}
-			break;			
+			break;	
+			
+		case "insertaprestamo":
+			idsocio = Long.parseLong(request.getParameter("idsocio"));
+			int idejemplar = Integer.parseInt(request.getParameter("idejemplar"));
+
+			try {
+				daoprestamo = new DaoPrestamo();
+				Prestamo prestamo = new Prestamo();
+				prestamo.setIdsocio(idsocio);
+				prestamo.setIdejemplar(idejemplar);
+				daoprestamo.insertaPrestamo(prestamo);
+				request.setAttribute("confirmaroperacion", "Préstamo dado de alta satisfactoriamente");
+				request.getRequestDispatcher("admin/prestamo.jsp").forward(request, response);
+			
+			} catch (PrestamoException ptmoexc) {
+				request.setAttribute("codigoSocio", idsocio);
+				request.setAttribute("codigoEjemplar", idejemplar);
+				procesarError(request, response, ptmoexc, "admin/prestamo.jsp");
+			
+			} catch (SQLException sqle) {
+				request.setAttribute("codigoSocio", idsocio);
+				request.setAttribute("codigoEjemplar", idejemplar);
+				procesarError(request, response, sqle, "admin/prestamo.jsp");
+			} catch (Exception e) {
+				procesarError(request, response, e, "admin/prestamo.jsp");
+			}
+		break;	
+		case "devolucion":
+			
+			int ejemplar = Integer.parseInt(request.getParameter("numeroejemplar"));
+			daoprestamo = new DaoPrestamo();
+			try {
+				daoprestamo.devolucionPrestamo(ejemplar);
+				request.setAttribute("confirmaroperacion", "Préstamo del ejemplar: "+ejemplar+ " devuelto satisfactoriamente");
+				request.getRequestDispatcher("admin/devolucion.jsp").forward(request, response);
+			} catch(PrestamoException pe) {
+				request.setAttribute("ejemplar", ejemplar);
+				procesarError(request, response, pe, "admin/devolucion.jsp");
+			} catch (SQLException sqle) {
+				request.setAttribute("ejemplar", ejemplar);
+				procesarError(request, response, sqle, "admin/devolucion.jsp");
+			} catch (Exception e) {
+				procesarError(request, response, e, "admin/devolucion.jsp");
+			}
+			break;
+
 		default:
 			break;
 		}

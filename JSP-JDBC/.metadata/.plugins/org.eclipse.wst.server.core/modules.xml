@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <modules>
+  <module moduleId="org.eclipse.jst.jee.server:City" serverId="GlassFish [domain1]"/>
   <module moduleId="org.eclipse.jst.jee.server:ConversorMillasKM" serverId="GlassFish [domain1]"/>
   <module moduleId="org.eclipse.jst.jee.server:Biblioteca_web" serverId="GlassFish [domain1]"/>
   <module moduleId="org.eclipse.jst.jee.server:Foster" serverId="GlassFish [domain1]"/>
