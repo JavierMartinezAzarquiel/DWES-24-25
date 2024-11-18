@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class Controllersocio extends HttpServlet {
 		String operacion = request.getParameter("operacion");
 		System.out.println(operacion);
 		DaoAutor daoAutor=null;
-		
+		HttpSession session = request.getSession(true);
 		switch (operacion) {
 		
 		case "listarAutores":
@@ -109,6 +111,10 @@ public class Controllersocio extends HttpServlet {
 			} catch (Exception e) {
 				procesarError(request, response, e, null);
 			}
+			break;
+		case "logout":
+			session.invalidate();
+			response.sendRedirect("index.jsp");
 			break;
 		default:
 			break;
