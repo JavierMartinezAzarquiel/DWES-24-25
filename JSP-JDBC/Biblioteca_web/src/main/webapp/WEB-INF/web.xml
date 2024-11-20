@@ -1,94 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="https://jakarta.ee/xml/ns/jakartaee"
-	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-	id="WebApp_ID" version="5.0">
-	<display-name>biblioteca</display-name>
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-	<login-config>
-		<auth-method>FORM</auth-method>
-		<realm-name>bibliotecaaza</realm-name>
-		<form-login-config>
-			<form-login-page>/seguridad/login.jsp</form-login-page>
-			<form-error-page>/seguridad/credencialesnovalidas.jsp</form-error-page>
-		</form-login-config>
-	</login-config>
-	
-	<security-role>
-		<description>Rol de usuarios registrados para la aplicacion</description>
-		<role-name>socios</role-name>
-	</security-role>
-	<security-role>
-		<description>Rol de administrativos para la aplicacion</description>
-		<role-name>administrativos</role-name>
-	</security-role>	
-		<security-constraint>
-		<display-name>Zona Socios</display-name>
-		<web-resource-collection>
-			<web-resource-name>ZonaSocios</web-resource-name>
-			<description>Acceso a la consulta bibliografica y modificación datos personales</description>
-			<url-pattern>/socios/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<description>Tanto socios como administrativos tendrán acceso a este recurso</description>
-			<role-name>socios</role-name>
-			<role-name>administrativos</role-name>
-		</auth-constraint>
-	</security-constraint> 
-	<security-constraint>
-		<display-name>Zona Administrativos</display-name>
-		<web-resource-collection>
-			<web-resource-name>ZonaAdministrativos</web-resource-name>
-			<description>Acceso a las funciones principales del personal administrativo de la biblioteca</description>
-			<url-pattern>/admin/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<description>Solo usuarios con el rol de administrativos podrán acceder a estos recursos</description>
-			<role-name>administrativos</role-name>
-		</auth-constraint>
-	</security-constraint>
-	<security-constraint>
-		<display-name>Controlador: ControllerSocio</display-name>
-		<web-resource-collection>
-			<web-resource-name>ControllerSocio</web-resource-name>
-			<description>Controlador que atiende las peticiones de socios registrados</description>
-			<url-pattern>/controllersocio</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<description>Tanto socios como administrativos tendrán acceso a este recurso</description>
-			<role-name>socios</role-name>
-			<role-name>administrativos</role-name>
-		</auth-constraint>
-	</security-constraint>
-	<security-constraint>
-		<display-name>ControllerAdmin</display-name>
-		<web-resource-collection>
-			<web-resource-name>ControladorTareasAdministrativas</web-resource-name>
-			<description>Controla el acceso a operaciones del perfil administrativo</description>
-			<url-pattern>/controllerAdmin</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<description></description>
-			<role-name>administrativos</role-name>
-		</auth-constraint>
-	</security-constraint>
-	<error-page>
-		<error-code>403</error-code>
-		<location>/accesoprohibido.html</location>
-	</error-page>
-	
-	<servlet>
-		<description></description>
-		<display-name>ControllerAdmin</display-name>
-		<servlet-name>ControllerAdmin</servlet-name>
-		<servlet-class>servlets.ControllerAdmin</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ControllerAdmin</servlet-name>
-		<url-pattern>/ControllerAdmin</url-pattern>
-		<url-pattern>/controllerAdmin</url-pattern>
-	</servlet-mapping>
-
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+  <display-name>biblioteca</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>bibliotecaaza</realm-name>
+    <form-login-config>
+      <form-login-page>/seguridad/login.jsp</form-login-page>
+      <form-error-page>/seguridad/credencialesnovalidas.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+    <description>Rol de usuarios registrados para la aplicacion</description>
+    <role-name>socios</role-name>
+  </security-role>
+  <security-role>
+    <description>Rol de administrativos para la aplicacion</description>
+    <role-name>administrativos</role-name>
+  </security-role>
+  <security-constraint>
+    <display-name>Zona Socios</display-name>
+    <web-resource-collection>
+      <web-resource-name>ZonaSocios</web-resource-name>
+      <description>Acceso a la consulta bibliografica y modificación datos personales</description>
+      <url-pattern>/socios/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <description>Tanto socios como administrativos tendrán acceso a este recurso</description>
+      <role-name>socios</role-name>
+      <role-name>administrativos</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <display-name>Zona Administrativos</display-name>
+    <web-resource-collection>
+      <web-resource-name>ZonaAdministrativos</web-resource-name>
+      <description>Acceso a las funciones principales del personal administrativo de la biblioteca</description>
+      <url-pattern>/admin/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <description>Solo usuarios con el rol de administrativos podrán acceder a estos recursos</description>
+      <role-name>administrativos</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <display-name>Controlador: ControllerSocio</display-name>
+    <web-resource-collection>
+      <web-resource-name>ControllerSocio</web-resource-name>
+      <description>Controlador que atiende las peticiones de socios registrados</description>
+      <url-pattern>/controllersocio</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <description>Tanto socios como administrativos tendrán acceso a este recurso</description>
+      <role-name>socios</role-name>
+      <role-name>administrativos</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <display-name>ControllerAdmin</display-name>
+    <web-resource-collection>
+      <web-resource-name>ControladorTareasAdministrativas</web-resource-name>
+      <description>Controla el acceso a operaciones del perfil administrativo</description>
+      <url-pattern>/controllerAdmin</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <description></description>
+      <role-name>administrativos</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/accesoprohibido.html</location>
+  </error-page>
+  <servlet>
+    <description></description>
+    <display-name>ControllerAdmin</display-name>
+    <servlet-name>ControllerAdmin</servlet-name>
+    <servlet-class>servlets.ControllerAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerAdmin</servlet-name>
+    <url-pattern>/ControllerAdmin</url-pattern>
+    <url-pattern>/controllerAdmin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller</display-name>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>servlets.Controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/Controller</url-pattern>
+    <url-pattern>/controller</url-pattern>
+  </servlet-mapping>
 </web-app>

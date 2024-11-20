@@ -36,7 +36,7 @@
 					<div class="cb"></div>
 					<div class="botones">	
 							<input type="submit" name="Submit" value="Acceder">
-							<a href="/biblioteca/altasocio.jsp">Registrese</a>
+							<a href="../altasocio.jsp">Registrese</a>
 					</div>	
 				</fieldset>		
 		</form>

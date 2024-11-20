@@ -84,33 +84,33 @@ public class ControllerAdmin extends HttpServlet {
 			
 			break;
 			
-		case "registrarse":
-			System.out.println("Entrando en registrarse....");
-			nombre = request.getParameter("nombre");
-			String email = request.getParameter("email");
-			String clave = request.getParameter("password");
-			String direccion = request.getParameter("direccion");
-
-			DaoSocio daosocio = new DaoSocio();
-			Socio socio = new Socio();
-			socio.setNombre(nombre);
-			socio.setEmail(email);
-			socio.setClave(clave);
-			socio.setDireccion(direccion);
-			try {
-				daosocio.insertarSocio(socio);
-				//recuperamos el socio que ya vendrá con el ID completo
-				socio = daosocio.findSocioByEmail(socio.getEmail());
-				request.setAttribute("socio", socio);
-				request.setAttribute("confirmaroperacion", "Socio "+socio.getIdsocio()+" creado satisfactoriamente");
-				request.getRequestDispatcher("admin/altasocio.jsp").forward(request, response);
-			} catch (SQLException e) {
-				System.out.println(e.toString());
-				procesarError(request, response, e,"admin/altasocio.jsp");
-			} catch (Exception e) {
-				procesarError(request, response, e,"admin/altasocio.jsp");
-			}
-			break;
+//		case "registrarse":
+//			System.out.println("Entrando en registrarse....");
+//			nombre = request.getParameter("nombre");
+//			String email = request.getParameter("email");
+//			String clave = request.getParameter("password");
+//			String direccion = request.getParameter("direccion");
+//
+//			DaoSocio daosocio = new DaoSocio();
+//			Socio socio = new Socio();
+//			socio.setNombre(nombre);
+//			socio.setEmail(email);
+//			socio.setClave(clave);
+//			socio.setDireccion(direccion);
+//			try {
+//				daosocio.insertarSocio(socio);
+//				//recuperamos el socio que ya vendrá con el ID completo
+//				socio = daosocio.findSocioByEmail(socio.getEmail());
+//				request.setAttribute("socio", socio);
+//				request.setAttribute("confirmaroperacion", "Socio "+socio.getIdsocio()+" creado satisfactoriamente");
+//				request.getRequestDispatcher("admin/altasocio.jsp").forward(request, response);
+//			} catch (SQLException e) {
+//				System.out.println(e.toString());
+//				procesarError(request, response, e,"admin/altasocio.jsp");
+//			} catch (Exception e) {
+//				procesarError(request, response, e,"admin/altasocio.jsp");
+//			}
+//			break;
 			
 		case "listadoSociosPaginado":
 			DaoSocio daoSocio = new DaoSocio();
@@ -172,6 +172,7 @@ public class ControllerAdmin extends HttpServlet {
 		case "editarsocio":
 			long idsocio = Long.parseLong(request.getParameter("socio"));
 			daoSocio = new DaoSocio();
+			Socio socio = null;
 			try {
 				socio = daoSocio.findSocioById(idsocio);
 				request.setAttribute("socioenproceso", socio);
@@ -206,7 +207,7 @@ public class ControllerAdmin extends HttpServlet {
 			break;	
 			
 		case "socioslibrosfueraplazo":
-			daosocio = new DaoSocio();
+			DaoSocio daosocio = new DaoSocio();
 			try {
 				listadoSocios = daosocio.listadoSociosMorosos();
 				session.setAttribute("listadoSociosMorosos", listadoSocios);

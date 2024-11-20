@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import conexiones.Conexion;
 import entidades.Socio;
+import entidades.Token;
+import tools.Tools;
 import util.Hash;
 
 public class DaoSocio {
@@ -341,7 +344,7 @@ public class DaoSocio {
 	}
 
 	/* ********************************************************************** */
-	public Socio insertarSocio(Socio s) throws SQLException, Exception {
+	public Socio insertarSocio(Socio s, String clave) throws SQLException, Exception {
 		Connection con = null;
 		PreparedStatement st = null;
 		String ordenSQL = null;
@@ -349,27 +352,45 @@ public class DaoSocio {
 			Conexion miconex = new Conexion();
 			con = miconex.getConexion();
 			con.setAutoCommit(false); //Para poder posponer el commit de los cambios
-			ordenSQL = "INSERT INTO USUARIOS VALUES(?,?)";
-			st = con.prepareStatement(ordenSQL);
-			st.setString(1, s.getEmail());
-			st.setString(2, Hash.getHash(s.getClave(), "MD5") );
-			st.executeUpdate();
-			st.close();
-			ordenSQL = "INSERT INTO GRUPOS VALUES(?,?)";
-			st = con.prepareStatement(ordenSQL);
-			st.setString(1, "sociosbiblioteca");
-			st.setString(2, s.getEmail());
-			st.executeUpdate();
-			st.close();
-			ordenSQL = "INSERT INTO SOCIO(IDSOCIO,EMAIL,NOMBRE,DIRECCION,VERSION) VALUES(S_SOCIO.NEXTVAL,?,?,?,?)";
+			//Antes hacíamos los tres pasos de golpe, pero ahora lo haremos con validación
+//			ordenSQL = "INSERT INTO USUARIOS VALUES(?,?)";
+//			st = con.prepareStatement(ordenSQL);
+//			st.setString(1, s.getEmail());
+//			st.setString(2, Hash.getSha256(s.getClave()) );
+//			st.executeUpdate();
+//			st.close();
+//			ordenSQL = "INSERT INTO GRUPOS VALUES(?,?)";
+//			st = con.prepareStatement(ordenSQL);
+//			st.setString(1, "sociosbiblioteca");
+//			st.setString(2, s.getEmail());
+//			st.executeUpdate();
+//			st.close();
+			//Insertamos el socio
+			ordenSQL = "INSERT INTO SOCIO(IDSOCIO,EMAIL,NOMBRE,DIRECCION,VERSION,TELEFONO) VALUES(S_SOCIO.NEXTVAL,?,?,?,?,?)";
 			st = con.prepareStatement(ordenSQL);
 			st.setString(1, s.getEmail());
 			st.setString(2, s.getNombre());
 			st.setString(3, s.getDireccion());
 			st.setInt(4, 1);
+			st.setString(5, s.getTelefono());
 			st.executeUpdate();
-			con.commit();
 			st.close();
+			//segundo paso, creamos el objeto Token para poder enviar por correo
+			System.out.println("comenzamos a generar token");
+			Token token = new Token();
+			token.setEmail(s.getEmail());
+			token.setValue(Tools.generaToken()); //generamos un valor para el Token
+			System.out.println(token.getValue());
+			token.setTelefono(s.getTelefono());
+			token.setFecha(java.sql.Timestamp.valueOf( LocalDateTime.now() ) );
+			System.out.println(token.getFecha());
+			token.setClave(Hash.getSha256(clave));
+			DaoToken daoToken = new DaoToken();
+			System.out.println(token);
+			daoToken.addToken(token);
+			//Tercer paso: Enviar un correo de validación al email con el que se han registrado		
+			
+			con.commit();
 			con.close();
 		} catch (SQLException se) {
 			if (con!=null)

@@ -7,7 +7,8 @@ public class Socio {
     private String direccion;
     private int version;
     private String clave;
-
+    private String telefono;
+    
 	public Socio() {
     }
 
@@ -56,6 +57,14 @@ public class Socio {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	@Override

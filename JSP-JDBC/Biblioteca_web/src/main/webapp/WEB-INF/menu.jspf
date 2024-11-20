@@ -1,29 +1,34 @@
 <ul id="MenuBar1" class="MenuBarHorizontal">
    <li><a class="MenuBarItemSubmenu" href="#">Socios</a>
       <ul>
-		
+		<c:if test="<%=request.isUserInRole("administrativos")%>">
          <li><a
             href="${pageContext.request.contextPath}/admin/altasocio.jsp">Nuevo
                Socio</a></li>
-       
+        </c:if>
+        <c:if test="<%=request.isUserInRole("administrativos")%>">
          <li><a
             href="${pageContext.request.contextPath}/controllerAdmin?operacion=listadoSociosPaginado">Listado
                Socios</a></li>     
-      
-            <li><a
-               href="${pageContext.request.contextPath}/admin/getsocio.jsp">Modificar
+        </c:if>
+        <c:if test="<%=request.isUserInRole("administrativos")%>">
+          <li><a
+             href="${pageContext.request.contextPath}/admin/getsocio.jsp">Modificar
                   Socio</a></li>
-        
-            <li><a href="#">Eliminar Socio</a></li>
-       
-            <li><a
+        </c:if>
+        <c:if test="<%=request.isUserInRole("administrativos")%>">
+          <li><a href="#">Eliminar Socio</a></li>
+        </c:if>
+        <c:if test="<%=request.isUserInRole("socios")%>">
+          <li><a
                href="${pageContext.request.contextPath}/controllersocio?operacion=editardatospersonales">Modificar
                   Datos Personales</a></li>
-                
+         </c:if>
+         <c:if test="<%=request.isUserInRole("administrativos")%>">       
             <li><a
                href="${pageContext.request.contextPath}/controllerAdmin?operacion=socioslibrosfueraplazo">Socios
                   Morosos</a></li>
-      
+         </c:if>
       </ul></li>
    <li><a href="#" class="MenuBarItemSubmenu">Autores</a>
       <ul>
@@ -62,10 +67,10 @@
      
          <li><a
             href="${pageContext.request.contextPath}/admin/devolucion.jsp">Devolucion</a></li>
-      
+         <c:if test="<%=request.isUserInRole("administrativos")||request.isUserInRole("socios")%>">
          <li><a
             href="${pageContext.request.contextPath}/controllersocio?operacion=logout">Logout</a></li>
-         
+         </c:if>
       </ul></li>
 </ul>
 <script type="text/javascript">
