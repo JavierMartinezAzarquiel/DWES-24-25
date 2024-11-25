@@ -78,7 +78,7 @@ public class Tools {
 	 */
 	public static void enviarConGMail(String destinatario, String asunto, String cuerpo) {
 		String remitente = "no_reply@ies-azarquiel.es";  
-		String clave="***********";
+		String clave="*********";
 		Properties props = System.getProperties();
 		props.put("mail.smtp.auth", "true"); // Usar autenticación mediante usuario y clave
 		props.put("mail.smtp.starttls.enable", "true"); // Para conectar de manera segura al servidor SMTP

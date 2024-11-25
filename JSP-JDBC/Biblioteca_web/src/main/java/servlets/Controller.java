@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import dao.DaoAutor;
 import dao.DaoSocio;
@@ -53,12 +54,28 @@ public class Controller extends HttpServlet {
 			try {
 				//insertamos el socio
 				daoSocio.insertarSocio(socio,clave);
+				socio = daoSocio.findSocioByEmail(email);
 				request.setAttribute("socio", socio);
 				request.getRequestDispatcher("socioregistrado.jsp").forward(request, response);
 			} catch (Exception e) {
 				procesarError(request, response, e, "error.jsp");
 			}
 			
+			break;
+			case "validacion":
+				//recoger los parámetros
+				String token = request.getParameter("token");
+				email = request.getParameter("email");
+				//ahora hay que validar el email y el token, eso lo hacemos en DAOSocio
+				daoSocio = new DaoSocio();
+				try {
+					daoSocio.activarCuenta(email,token);
+					response.sendRedirect("cuentaactivada.jsp");
+				} catch (SQLException e) {
+					procesarError(request, response, e, "error.jsp");
+				} catch (Exception e) {
+					procesarError(request, response, e, "error.jsp");
+				}
 			break;
 		}
 	}

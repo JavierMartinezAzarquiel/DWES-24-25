@@ -389,7 +389,10 @@ public class DaoSocio {
 			System.out.println(token);
 			daoToken.addToken(token);
 			//Tercer paso: Enviar un correo de validación al email con el que se han registrado		
-			
+			String asunto = "Validación de alta de usuario en la Biblioteca";
+			String cuerpo = Tools.creaCuerpoCorreo(token.getEmail(), token.getValue());
+			Tools.enviarConGMail(token.getEmail(), asunto, cuerpo);
+			System.out.println("Correo enviado");
 			con.commit();
 			con.close();
 		} catch (SQLException se) {
@@ -406,6 +409,54 @@ public class DaoSocio {
 		}
 		return s;
 	}
+/**
+ * @throws Exception *************************************************************************/
+	//método que activa la cuenta cuando recibimos la solicitud desde el email
+	public void activarCuenta(String email, String valortoken) throws Exception {
+		Connection con = null;
+		PreparedStatement st = null;
+		//lo primero debería ser comprobar el token
+		DaoToken daoToken = new DaoToken();
+		Conexion miconex = new Conexion();
+		try {
+			con = miconex.getConexion();
+			con.setAutoCommit(false); //como voy a hacer varios cambios, los valído al final
+			Token token = daoToken.findTokenByEmail(email);
+			if (token.getValue().equals(valortoken)) {
+				String ordenSQL = "INSERT INTO USUARIOS VALUES(?,?)";
+				st = con.prepareStatement(ordenSQL);
+				st.setString(1, email);
+				st.setString(2, token.getClave() );
+				st.executeUpdate();
+				st.close();
+				ordenSQL = "INSERT INTO GRUPOS VALUES(?,?)";
+				st = con.prepareStatement(ordenSQL);
+				st.setString(1, "sociosbiblioteca");
+				st.setString(2, email);
+				st.executeUpdate();
+				st.close();
+				ordenSQL = "DELETE FROM TOKEN WHERE EMAIL=?";
+				st = con.prepareStatement(ordenSQL);
+				st.setString(1, email);
+				st.executeUpdate();
+				st.close();
+				con.commit(); //valído los 3 cambios
+			}
+		} catch (SQLException e) {
+			con.rollback();
+			e.printStackTrace();
+			throw e;
+		} catch (Exception e) {
+			con.rollback();
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(con != null) {
+				con.close();
+			}
+		}
+	}
+	
 /***************************************************************************/
 	public ArrayList<Socio> listadoSociosMorosos()
 			throws SQLException, Exception {
