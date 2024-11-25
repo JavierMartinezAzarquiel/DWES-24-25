@@ -13,6 +13,8 @@ C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.c
 \Juego\src\main\java
 C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1275193567.index
 \City\src\main\java
+C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3865475671.index
+\Clicars\src\main\java
 C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3762144222.index
 \Alltricks\src\main\java
 C:\appDiurno\eclipse-workspace\JSP-JDBC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3690074879.index
