@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import captcha.VerificarRecaptcha;
 import dao.DaoAutor;
 import dao.DaoSocio;
 import entidades.Socio;
@@ -43,22 +44,30 @@ public class Controller extends HttpServlet {
 			String clave = request.getParameter("clave");
 			String telefono = request.getParameter("telefono");
 			String direccion = request.getParameter("direccion");
-			
-			//insertar una tupla en socio
-			Socio socio = new Socio();
-			socio.setNombre(nombre);
-			socio.setEmail(email);
-			socio.setDireccion(direccion);
-			socio.setTelefono(telefono);
-			DaoSocio daoSocio = new DaoSocio();
-			try {
-				//insertamos el socio
-				daoSocio.insertarSocio(socio,clave);
-				socio = daoSocio.findSocioByEmail(email);
-				request.setAttribute("socio", socio);
-				request.getRequestDispatcher("socioregistrado.jsp").forward(request, response);
-			} catch (Exception e) {
-				procesarError(request, response, e, "error.jsp");
+			String grecaptcharesponse = request.getParameter("g-recaptcha-response");
+			System.out.println("Token: " + grecaptcharesponse);
+			//verificamos el captcha
+			if (!VerificarRecaptcha.validate(grecaptcharesponse)) {
+				String mensajeError = "Verifique que no es un robot";
+				request.setAttribute("error", mensajeError);
+				request.getRequestDispatcher("altasocio.jsp").forward(request, response);
+			} else {
+				//insertar una tupla en socio
+				Socio socio = new Socio();
+				socio.setNombre(nombre);
+				socio.setEmail(email);
+				socio.setDireccion(direccion);
+				socio.setTelefono(telefono);
+				DaoSocio daoSocio = new DaoSocio();
+				try {
+					//insertamos el socio
+					daoSocio.insertarSocio(socio,clave);
+					socio = daoSocio.findSocioByEmail(email);
+					request.setAttribute("socio", socio);
+					request.getRequestDispatcher("socioregistrado.jsp").forward(request, response);
+				} catch (Exception e) {
+					procesarError(request, response, e, "error.jsp");
+				}
 			}
 			
 			break;
@@ -67,7 +76,7 @@ public class Controller extends HttpServlet {
 				String token = request.getParameter("token");
 				email = request.getParameter("email");
 				//ahora hay que validar el email y el token, eso lo hacemos en DAOSocio
-				daoSocio = new DaoSocio();
+				DaoSocio daoSocio = new DaoSocio();
 				try {
 					daoSocio.activarCuenta(email,token);
 					response.sendRedirect("cuentaactivada.jsp");

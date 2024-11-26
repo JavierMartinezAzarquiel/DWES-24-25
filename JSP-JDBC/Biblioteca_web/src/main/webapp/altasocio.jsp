@@ -8,6 +8,17 @@
 <meta charset="UTF-8">
 <title>Nuevo Socio</title>
 <jsp:directive.include file="includes/includefile.jspf" />
+<script src="https://www.google.com/recaptcha/api.js?render=6Lee-IgqAAAAANw5odbmy2QU1R3uFZmkeLhBo7AH"></script>
+<script>
+grecaptcha.ready(function() {
+grecaptcha.execute('6Lee-IgqAAAAANw5odbmy2QU1R3uFZmkeLhBo7AH', {action:
+'altasocio'})
+.then(function(token) {
+var recaptchaResponse = document.getElementById('g-recaptcha-response');
+recaptchaResponse.value = token;
+});
+});
+</script>
 </head>
 <body>
 	<div class="container">
@@ -64,6 +75,7 @@
 						<input type="submit" name="Submit" value="Alta">
 					</div>
 				</fieldset>
+				<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
 			</form>
 		</div>
 
