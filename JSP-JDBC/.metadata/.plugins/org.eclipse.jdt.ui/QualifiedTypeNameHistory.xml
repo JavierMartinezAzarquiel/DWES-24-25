@@ -11,7 +11,6 @@
     <fullyQualifiedTypeName name="java.time.format.TextStyle"/>
     <fullyQualifiedTypeName name="java.util.Locale"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="entidades.Autor"/>
@@ -31,8 +30,9 @@
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="util.Hash"/>
     <fullyQualifiedTypeName name="tools.Tools"/>
-    <fullyQualifiedTypeName name="dao.DaoSocio"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="dao.DaoToken"/>
     <fullyQualifiedTypeName name="conexiones.Conexion"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="dao.DaoSocio"/>
 </qualifiedTypeNameHistroy>
