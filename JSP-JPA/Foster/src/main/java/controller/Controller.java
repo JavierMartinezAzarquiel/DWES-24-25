@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-
-
-import conexion.Conexion;
+import java.util.List;
 import daos.DAOCategoria;
 import daos.DAOProducto;
 import daos.DAOPunto;
@@ -43,17 +40,14 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String operacion = request.getParameter("operacion");
-		ArrayList<Categoria> categorias =null;
-		ArrayList<Producto> productos =null;
+		List<Categoria> categorias =null;
+		List<Producto> productos =null;
 		
 		switch (operacion) {
 		case "iniciar": {
-			try {
-				categorias = new DAOCategoria().getAllCategorias();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+			categorias = new DAOCategoria().getAllCategorias();
+			
 			session.setAttribute("categorias", categorias);
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			break;
@@ -62,12 +56,9 @@ public class Controller extends HttpServlet {
 		{
 			String idcategoria = request.getParameter("idcategoria");
 			String nombrecategoria = request.getParameter("nombrecategoria");
-			try {
-				productos = new DAOProducto().getProductosByCategoria(Integer.parseInt(idcategoria));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+			productos = new DAOProducto().getProductosByCategoria(Long.parseLong(idcategoria));
+			
 			session.setAttribute("productos", productos);
 			session.setAttribute("nombrecategoria", nombrecategoria);
 			request.getRequestDispatcher("home.jsp").forward(request, response);
@@ -78,14 +69,14 @@ public class Controller extends HttpServlet {
 			String puntos = request.getParameter("puntos");
 			String idproducto = request.getParameter("idproducto");
 			
-			Punto punto = new Punto(100, Integer.parseInt(idproducto), Integer.parseInt(puntos));
-			try {
-				new DAOPunto().insertaPunto(punto);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			String msg = "Anotados "+puntos+ " puntos a "+ idproducto;
+			Punto punto = new Punto();
+			punto.setPuntos(Integer.parseInt(puntos));
+			Producto p = new DAOProducto().getProductoById(Long.parseLong(idproducto));
+			punto.setProducto(p); //obtener un producto y guardarlo dentro de punto
+			
+			new DAOPunto().insertaPunto(punto);
+			
+			String msg = "Anotados "+puntos+ " puntos a  "+ idproducto;
 			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			break;
