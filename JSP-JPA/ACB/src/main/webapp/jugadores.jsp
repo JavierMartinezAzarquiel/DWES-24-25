@@ -48,12 +48,14 @@
                                         <p class="card-text m-0">${jugador.edad}</p>
                                     </div>
                                 </div>
+                                <c:if test="${usuario!=null}">
                                         <div class="position-absolute bottom-0 end-0">
                                             <span class="h2">${jugador.likes}</span>
                                             <a href="Controller?op=like&idjugador=${jugador.id}">
                                                 <img src="img/thumbs.png" alt="" width="40" class="ms-2 mb-3">
                                             </a>
                                         </div>
+                                </c:if>
                             </div>
                         </div>
                     </c:forEach>

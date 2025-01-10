@@ -4,8 +4,8 @@
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@80.28.158.14:1521:oradai"/>
-			<property name="jakarta.persistence.jdbc.user" value="acb"/>
-			<property name="jakarta.persistence.jdbc.password" value="acb"/>
+			<property name="jakarta.persistence.jdbc.user" value="S2DAW30"/>
+			<property name="jakarta.persistence.jdbc.password" value="S2DAW30"/>
 			<property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
 		</properties>
 	</persistence-unit>

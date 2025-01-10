@@ -26,6 +26,19 @@
                 <div class="col-2">
                     <img src="img/logoendesa.png" alt="" height="60">
                 </div>
+                <div class="col-8 text-end">
+                    <c:choose>
+                        <c:when test="${usuario==null}">
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modallogin">Login</button>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="text-white">Welcome ${usuario.email}</span>
+                            <a href="Controller?op=logout" class="btn btn-success">Logout</a>
+                        </c:otherwise>
+                        
+                    </c:choose>
+                    
+                </div>
                 <div class="col-2 text-end">
                     <img src="img/logoacb.png" alt="" height="60">
                 </div>
@@ -52,8 +65,38 @@
             </div>
         </main>
 
-        <footer>
-            <!-- place footer here -->
+        <!-- Modal para el login del usuario-->
+        <div class="modal fade" id="modallogin" tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Login & Register</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+              </div>
+              <form action="Controller?op=login" method="post">
+              	<div class="modal-body">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Email</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="clave">
+                    </div>
+              	</div>
+                <div class="modal-footer" >
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Login & Register</button>
+                </div>
+              </form> 
+            </div>
+          </div>
+        </div>
+        
+
+        <footer class="bg-dark text-white p-3">
+            <h5 class="text-center">&copy; ACB</h5>
         </footer>
     </div>
     <!-- Bootstrap JavaScript Libraries -->
