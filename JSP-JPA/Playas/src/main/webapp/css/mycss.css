@@ -1,0 +1,25 @@
+text-30 {
+    font-size: 30px;
+}
+.card {
+    padding-bottom: 40px;
+}
+#info {
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+}
+#star {
+    position: absolute;
+    bottom: 0;
+    right: 8px;
+}
+#modalinfo img {
+    width: 40px;
+}
+.jumbotron img {
+    width: 80px;
+}
+#votos img {
+    width: 100px;
+}
