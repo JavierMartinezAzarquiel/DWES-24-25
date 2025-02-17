@@ -15,14 +15,14 @@ public class StudentDAOImpl implements StudentDAO {
     private EntityManager entityManager;
 
     @Autowired
-    public StudentDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public StudentDAOImpl(EntityManager entityManager) {this.entityManager = entityManager;
     }
 
     @Override
     @Transactional
-    public void saveStudent(Student student) {
-        entityManager.persist(student);
+    public Student saveStudent(Student student) {
+        Student estudiante = entityManager.merge(student);
+        return estudiante;
     }
 
     @Override
