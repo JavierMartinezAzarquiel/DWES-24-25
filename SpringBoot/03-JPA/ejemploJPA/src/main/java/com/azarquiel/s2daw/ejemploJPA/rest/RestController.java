@@ -2,7 +2,11 @@ package com.azarquiel.s2daw.ejemploJPA.rest;
 
 import com.azarquiel.s2daw.ejemploJPA.dao.StudentDAO;
 import com.azarquiel.s2daw.ejemploJPA.entity.Student;
+import com.azarquiel.s2daw.ejemploJPA.excepciones.RespuestaEstudentException;
+import com.azarquiel.s2daw.ejemploJPA.excepciones.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +28,7 @@ public class RestController {
 
     @GetMapping("/students/{id}")
     public Student getStudents(@PathVariable int id) {
+
         return studentDAO.findById(id);
     }
 
@@ -33,6 +38,60 @@ public class RestController {
        Student estudiante = studentDAO.saveStudent(student);
        return estudiante;
     }
+
+    //Acutalización de un estudiante usando metodo PUT
+    @PutMapping("/students")
+    public Student updateStudent(@RequestBody Student student) {
+       Student estudiante = studentDAO.updateStudent(student);
+
+       return estudiante;
+    }
+
+    //Borrado de un estudiante usando DELETE
+    @DeleteMapping("/students/{id}")
+    public void deleteStudent(@PathVariable int id) {
+        //busco el estudiante para comprobar que existe
+        Student estudiante = studentDAO.findById(id);
+
+        //comprobamos
+        if(estudiante == null) {
+            //lanzar una excepcion
+            throw new StudentNotFoundException("Student not found with id " + id);
+        }
+
+        studentDAO.deleteById(id);
+    }
+
+    //manejador de excepciones
+//    @ExceptionHandler
+//    public String exceptionHandler(StudentNotFoundException ex) {
+//        return ex.getMessage();
+//    }
+
+    @ExceptionHandler
+    public ResponseEntity<RespuestaEstudentException> handleException(StudentNotFoundException exc) {
+
+        RespuestaEstudentException error = new RespuestaEstudentException();
+
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMsg(exc.getMessage());
+        error.setTimestamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<RespuestaEstudentException> handleException(Exception exc) {
+
+        RespuestaEstudentException error = new RespuestaEstudentException();
+
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMsg(exc.getMessage());
+        error.setTimestamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
 }
 
 

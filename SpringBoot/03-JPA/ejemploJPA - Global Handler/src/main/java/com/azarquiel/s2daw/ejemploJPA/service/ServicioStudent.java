@@ -1,11 +1,10 @@
-package com.azarquiel.s2daw.ejemploJPA.dao;
+package com.azarquiel.s2daw.ejemploJPA.service;
 
 import com.azarquiel.s2daw.ejemploJPA.entity.Student;
-
 import java.util.List;
 
-public interface StudentDAO {
-    //Listado de los métodos que tiene el DAO
+public interface ServicioStudent {
+
     Student saveStudent(Student student);
     List<Student> find();
     Student findById(int id);
