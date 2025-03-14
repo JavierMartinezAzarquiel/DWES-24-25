@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba Thymeleaf</title>
+    <link rel="stylesheet" th:href="@{/css/mycss.css}" />
+</head>
+<body>
+<p th:text="'La fecha actual es: ' + ${fecha}" class="funny" />
+</body>
+</html>

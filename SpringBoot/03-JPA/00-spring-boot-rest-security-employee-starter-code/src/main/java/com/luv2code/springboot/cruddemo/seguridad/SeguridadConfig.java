@@ -22,10 +22,10 @@ public class SeguridadConfig {
         JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
 
         //buscamos los usuarios
-        manager.setUsersByUsernameQuery("select user_id, pw, active from members where user_id=?");
+        manager.setUsersByUsernameQuery("select nick, pass, 1 from usuario where nick=?");
 
         //buscamos los roles
-        manager.setAuthoritiesByUsernameQuery("select user_id, role from roles where user_id=?");
+        manager.setAuthoritiesByUsernameQuery("select nick, role from roles where nick=?");
 
         return manager;
     }
