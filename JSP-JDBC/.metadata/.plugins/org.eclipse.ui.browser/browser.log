@@ -4,3 +4,13 @@ sept 30, 2024 08:44:37.61 [4332:2912:0930/084437.414:ERROR:edge_auth_errors.cc(5
 sept 30, 2024 08:44:37.61 
 sept 30, 2024 08:44:38.19 [4332:2912:0930/084438.189:ERROR:fallback_task_provider.cc(127)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
 sept 30, 2024 08:59:17.92 [4332:2912:0930/085917.924:ERROR:fallback_task_provider.cc(127)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+
+mar 31, 2025 08:32:29.48 NEW SESSION
+mar 31, 2025 08:32:29.51 [2716:15296:0331/083228.947:ERROR:edge_auth_errors.cc(531)] EDGE_IDENTITY: Get Default OS Account failed: Error: Primary Error: kImplicitSignInFailure, Secondary Error: kAccountProviderFetchError, Platform error: 0, Error string: 
+mar 31, 2025 08:32:29.51 
+mar 31, 2025 08:32:29.66 [2716:15296:0331/083229.660:ERROR:fallback_task_provider.cc(126)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+mar 31, 2025 08:33:33.62 [2716:15296:0331/083333.626:ERROR:extension_util.cc(464)] All good, returning true
+mar 31, 2025 09:03:01.48 [9936:5804:0331/090301.469:ERROR:edge_auth_errors.cc(531)] EDGE_IDENTITY: Get Default OS Account failed: Error: Primary Error: kImplicitSignInFailure, Secondary Error: kAccountProviderFetchError, Platform error: 0, Error string: 
+mar 31, 2025 09:03:01.49 
+mar 31, 2025 09:03:02.22 [9936:5804:0331/090302.221:ERROR:fallback_task_provider.cc(126)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+mar 31, 2025 09:03:02.22 [9936:5804:0331/090302.224:ERROR:fallback_task_provider.cc(126)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.

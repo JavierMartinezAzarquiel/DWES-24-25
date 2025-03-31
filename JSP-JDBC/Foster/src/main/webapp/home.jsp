@@ -46,7 +46,7 @@
 				<c:forEach items="${productos}" var="producto">
 					<div class="col-xl-4 col-md-6 mb-3">
 						<div class="card">
-							<img class="card-img-top" src="${producto.imagen}" alt="Title" />
+							<img class="card-img-top" src="img/product/${producto.imagen}" alt="Title" />
 							<div class="card-body">
 								<h4 class="card-title text-center">${producto.titulo}</h4>
 								<p class="card-text">${producto.body}</p>
